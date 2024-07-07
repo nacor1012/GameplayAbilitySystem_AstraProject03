@@ -2,11 +2,20 @@
 
 
 #include "Character/AstraEnemy.h"
+
+#include "AbilitySystem/AstraAttributeSet.h"
+#include "AbilitySystem/AstraAbilitySystemComponent.h"
 #include "AstraProject03/AstraProject03.h"
 
 AAstraEnemy::AAstraEnemy()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+
+	AbilitySystemComponent = CreateDefaultSubobject<UAstraAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+
+	AttributeSet = CreateDefaultSubobject<UAstraAttributeSet>("AttributeSet");
+
 }
 
 void AAstraEnemy::HighLightActor()

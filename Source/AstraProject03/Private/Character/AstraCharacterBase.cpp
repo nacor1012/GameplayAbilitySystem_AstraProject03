@@ -18,6 +18,11 @@ AAstraCharacterBase::AAstraCharacterBase()
 	Shield->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
+UAbilitySystemComponent* AAstraCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 
 void AAstraCharacterBase::BeginPlay()
 {

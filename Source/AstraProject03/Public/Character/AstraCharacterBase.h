@@ -3,18 +3,24 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilitySystemInterface.h"
 #include "GameFramework/Character.h"
 #include "AstraCharacterBase.generated.h"
 
+
+class UAbilitySystemComponent;
+class UAttributeSet;
+
 UCLASS()
-class ASTRAPROJECT03_API AAstraCharacterBase : public ACharacter
+class ASTRAPROJECT03_API AAstraCharacterBase : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
 public:
 	
 	AAstraCharacterBase();
-
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 protected:
 	
 	virtual void BeginPlay() override;
@@ -24,4 +30,11 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<USkeletalMeshComponent> Shield;
+
+	UPROPERTY()
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY()
+	TObjectPtr<UAttributeSet> AttributeSet;
+
 };
