@@ -17,9 +17,9 @@ class ASTRAPROJECT03_API AAstraEnemy : public AAstraCharacterBase, public IEnemy
 	
 public:
 
+	AAstraEnemy();
+
 	virtual void HighLightActor() override;
 	virtual void UnHighLightActor() override;
 
-	UPROPERTY(BlueprintReadOnly)
-	bool bHighlighted = false;
 };
