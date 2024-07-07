@@ -13,6 +13,7 @@ AAstraEnemy::AAstraEnemy()
 
 	AbilitySystemComponent = CreateDefaultSubobject<UAstraAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 
 	AttributeSet = CreateDefaultSubobject<UAstraAttributeSet>("AttributeSet");
 
