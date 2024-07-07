@@ -14,4 +14,7 @@ class ASTRAPROJECT03_API AAstraCharacter : public AAstraCharacterBase
 {
 	GENERATED_BODY()
 	
+public:
+
+	AAstraCharacter();
 };
