@@ -1,6 +1,7 @@
 // Copyright SkyHigh Gaming.
 
 using UnrealBuildTool;
+using UnrealBuildTool.Rules;
 
 public class AstraProject03 : ModuleRules
 {
@@ -10,7 +11,7 @@ public class AstraProject03 : ModuleRules
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "Niagara", "GeometryCollectionEngine", "UMG", "AIModule" });
 
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
+		PrivateDependencyModuleNames.AddRange(new string[] { "GameplayAbilities", "GameplayTags", "GameplayTasks" });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
