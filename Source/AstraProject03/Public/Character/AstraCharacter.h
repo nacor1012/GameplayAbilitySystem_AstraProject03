@@ -17,4 +17,11 @@ class ASTRAPROJECT03_API AAstraCharacter : public AAstraCharacterBase
 public:
 
 	AAstraCharacter();
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+
+private:
+
+	void InitAblilityActorInfo();
+
 };

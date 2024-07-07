@@ -36,3 +36,11 @@ void AAstraEnemy::UnHighLightActor()
 	Shield->SetRenderCustomDepth(false);
 	
 }
+
+void AAstraEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+
+}

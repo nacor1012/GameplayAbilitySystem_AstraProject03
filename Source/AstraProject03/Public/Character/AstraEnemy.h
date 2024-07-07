@@ -19,7 +19,13 @@ public:
 
 	AAstraEnemy();
 
+	/** Enemy Interface */
 	virtual void HighLightActor() override;
 	virtual void UnHighLightActor() override;
+	/** End Enemy Interface */
+
+protected:
+
+	virtual void BeginPlay() override;
 
 };

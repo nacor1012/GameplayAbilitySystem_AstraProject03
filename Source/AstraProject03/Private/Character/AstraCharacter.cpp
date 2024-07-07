@@ -2,6 +2,9 @@
 
 
 #include "Character/AstraCharacter.h"
+
+#include "AbilitySystemComponent.h"
+#include "Player/AstraPlayerState.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 AAstraCharacter::AAstraCharacter()
@@ -15,4 +18,33 @@ AAstraCharacter::AAstraCharacter()
 	bUseControllerRotationRoll = false;
 	bUseControllerRotationYaw = false;
 
+}
+
+void AAstraCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	// Init ability actor info for the server
+	InitAblilityActorInfo();
+
+
+}
+
+void AAstraCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+
+	// Init ability actor info for the server
+	InitAblilityActorInfo();
+
+}
+
+void AAstraCharacter::InitAblilityActorInfo()
+{
+	AAstraPlayerState* AstraPlayerState = GetPlayerState<AAstraPlayerState>();
+	check(AstraPlayerState);
+
+	AstraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AstraPlayerState, this);
+	AbilitySystemComponent = AstraPlayerState->GetAbilitySystemComponent();
+	AttributeSet = AstraPlayerState->GetAttributeSet();
 }
