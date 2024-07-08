@@ -17,6 +17,14 @@ AAstraEnemy::AAstraEnemy()
 
 	AttributeSet = CreateDefaultSubobject<UAstraAttributeSet>("AttributeSet");
 
+	Shield = CreateDefaultSubobject<USkeletalMeshComponent>("Shield");
+	Shield->SetupAttachment(GetMesh(), FName("ShieldHandSocket"));
+	Shield->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	Bow = CreateDefaultSubobject<USkeletalMeshComponent>("Bow");
+	Bow->SetupAttachment(GetMesh(), FName("BowHandSocket"));
+	Bow->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
 }
 
 void AAstraEnemy::HighLightActor()
@@ -27,6 +35,8 @@ void AAstraEnemy::HighLightActor()
 	Weapon->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
 	Shield->SetRenderCustomDepth(true);
 	Shield->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
+	Bow->SetRenderCustomDepth(true);
+	Bow->SetCustomDepthStencilValue(CUSTOM_DEPTH_RED);
 }
 
 void AAstraEnemy::UnHighLightActor()
@@ -34,6 +44,7 @@ void AAstraEnemy::UnHighLightActor()
 	GetMesh()->SetRenderCustomDepth(false);
 	Weapon->SetRenderCustomDepth(false);
 	Shield->SetRenderCustomDepth(false);
+	Bow->SetRenderCustomDepth(false);
 	
 }
 
