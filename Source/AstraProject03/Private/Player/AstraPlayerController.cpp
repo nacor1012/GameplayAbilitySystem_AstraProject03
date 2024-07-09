@@ -77,9 +77,12 @@ void AAstraPlayerController::BeginPlay()
 	check(AstraContext);
 
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(Subsystem);
-	Subsystem->AddMappingContext(AstraContext, 0);
+	if (Subsystem)
+	{
+		Subsystem->AddMappingContext(AstraContext, 0);
 
+	}
+	
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
 

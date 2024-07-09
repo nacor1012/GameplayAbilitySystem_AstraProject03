@@ -3,6 +3,8 @@
 
 #include "Character/AstraCharacter.h"
 
+#include "UI/HUD/AstraHUD.h"
+#include "Player/AstraPlayerController.h"
 #include "AbilitySystemComponent.h"
 #include "Player/AstraPlayerState.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -34,7 +36,7 @@ void AAstraCharacter::OnRep_PlayerState()
 {
 	Super::OnRep_PlayerState();
 
-	// Init ability actor info for the server
+	// Init ability actor info for the Client
 	InitAblilityActorInfo();
 
 }
@@ -47,4 +49,14 @@ void AAstraCharacter::InitAblilityActorInfo()
 	AstraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AstraPlayerState, this);
 	AbilitySystemComponent = AstraPlayerState->GetAbilitySystemComponent();
 	AttributeSet = AstraPlayerState->GetAttributeSet();
+
+	if (AAstraPlayerController * AstraPlayerController = Cast<AAstraPlayerController>(GetController()))
+	{
+		if (AAstraHUD* AstraHUD = Cast<AAstraHUD>(AstraPlayerController->GetHUD()))
+		{
+			AstraHUD->InitOverlay(AstraPlayerController, AstraPlayerState, AbilitySystemComponent, AttributeSet);
+		}
+	}
+	
+
 }
