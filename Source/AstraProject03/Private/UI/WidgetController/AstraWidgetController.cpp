@@ -11,3 +11,8 @@ void UAstraWidgetController::SetWidgetControllerParams(const FWidgetControllerPa
 	AttributeSet = WCParams.AttributeSet;
 
 }
+
+void UAstraWidgetController::BroadcastInitialValues()
+{
+
+}

@@ -6,12 +6,22 @@
 #include "UI/WidgetController/AstraWidgetController.h"
 #include "OverlayWidgetController.generated.h"
 
-/**
- * 
- */
-UCLASS()
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangedSignature, float, NewMaxHealth);
+
+UCLASS(BlueprintType, Blueprintable)
 class ASTRAPROJECT03_API UOverlayWidgetController : public UAstraWidgetController
 {
 	GENERATED_BODY()
+
+public:
+
+	virtual void BroadcastInitialValues() override;
+
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
+	FOnHealthChangedSignature OnHealthChanged;
+
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
+	FOnMaxHealthChangedSignature OnMaxHealthChanged;
 	
 };

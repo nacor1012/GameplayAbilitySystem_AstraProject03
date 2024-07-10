@@ -42,5 +42,5 @@ private:
 
 	TScriptInterface<IEnemyInterface> LastActor;
 	TScriptInterface<IEnemyInterface> ThisActor;
-
+	
 };

@@ -32,6 +32,6 @@ void AAstraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySys
 
 	OverlayWidget->SetWidgetContoller(WidgetController);
 
-
+	WidgetController->BroadcastInitialValues();
 	Widget->AddToViewport();
 }
