@@ -25,8 +25,10 @@ void AAstraEffectActor::OnOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	if (IAbilitySystemInterface* ASCInterface = Cast<IAbilitySystemInterface>(OtherActor))
 	{
 		const UAstraAttributeSet* AstraAttributeSet = Cast<UAstraAttributeSet> (ASCInterface->GetAbilitySystemComponent()->GetAttributeSet(UAstraAttributeSet::StaticClass()));
+
 		UAstraAttributeSet* MutableAstraAttributeSet = const_cast<UAstraAttributeSet*>(AstraAttributeSet);
 		MutableAstraAttributeSet->SetHealth(AstraAttributeSet->GetHealth() + 25.f);
+		MutableAstraAttributeSet->SetMana(AstraAttributeSet->GetMana() - 25.f);
 		Destroy();
 	}
 }

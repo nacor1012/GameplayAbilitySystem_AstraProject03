@@ -8,7 +8,7 @@ UAstraAttributeSet::UAstraAttributeSet()
 {
 	InitHealth(50.f);
 	InitMaxHealth(100.f);
-	InitMana(35.f);
+	InitMana(90.f);
 	InitMaxMana(90.f);
 }
 
