@@ -16,3 +16,8 @@ void UAstraWidgetController::BroadcastInitialValues()
 {
 
 }
+
+void UAstraWidgetController::BindCallbacksToDependencies()
+{
+
+}
