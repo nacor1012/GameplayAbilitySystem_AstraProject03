@@ -34,4 +34,14 @@ void AAstraEffectActor::ApplyEffectToTarget(AActor* Target, TSubclassOf<UGamepla
 	
 }
 
+void AAstraEffectActor::OnOverlap(AActor* TargetActor)
+{
+
+}
+
+void AAstraEffectActor::OnEndOverlap(AActor* TargetActor)
+{
+
+}
+
 
