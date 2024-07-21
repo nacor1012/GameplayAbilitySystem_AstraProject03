@@ -40,36 +40,36 @@ void UAstraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute,
 	}
 }
 
-void UAstraAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props)
+void UAstraAttributeSet::SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const
 {
 	// Source = Causer of the effect, Target = target of the effect (owner of this AS)
 
 	Props.EffectContextHandle = Data.EffectSpec.GetContext();
-	const UAbilitySystemComponent* SourceASC = EffectContextHandle.GetOriginalInstigatorAbilitySystemComponent();
+	Props.SourceASC = Props.EffectContextHandle.GetOriginalInstigatorAbilitySystemComponent();
 
-	if (IsValid(SourceASC) && SourceASC->AbilityActorInfo.IsValid() && SourceASC->AbilityActorInfo->AvatarActor.IsValid())
+	if (IsValid(Props.SourceASC) && Props.SourceASC->AbilityActorInfo.IsValid() && Props.SourceASC->AbilityActorInfo->AvatarActor.IsValid())
 	{
-		AActor* SourceAvatarActor = SourceASC->AbilityActorInfo->AvatarActor.Get();
-		const AController* SourceController = SourceASC->AbilityActorInfo->PlayerController.Get();
-		if (SourceController == nullptr && SourceAvatarActor != nullptr)
+		Props.SourceAvatarActor = Props.SourceASC->AbilityActorInfo->AvatarActor.Get();
+		Props.SourceController = Props.SourceASC->AbilityActorInfo->PlayerController.Get();
+		if (Props.SourceController == nullptr && Props.SourceAvatarActor != nullptr)
 		{
-			if (const APawn* Pawn = Cast<APawn>(SourceAvatarActor))
+			if (const APawn* Pawn = Cast<APawn>(Props.SourceAvatarActor))
 			{
-				SourceController = Pawn->GetController();
+				Props.SourceController = Pawn->GetController();
 			}
 		}
-		if (SourceController)
+		if (Props.SourceController)
 		{
-			ACharacter* SourseCharacter = Cast <ACharacter>(SourceController->GetPawn());
+			Props.SourceCharacter = Cast <ACharacter>(Props.SourceController->GetPawn());
 		}
 	}
 
 	if (Data.Target.AbilityActorInfo.IsValid() && Data.Target.AbilityActorInfo->AvatarActor.IsValid())
 	{
-		AActor* TargetAvatarActor = Data.Target.AbilityActorInfo->AvatarActor.Get();
-		AController* TargetController = Data.Target.AbilityActorInfo->PlayerController.Get();
-		ACharacter* TargetCharacter = Cast<ACharacter>(TargetAvatarActor);
-		UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetAvatarActor);
+		Props.TargetAvatarActor = Data.Target.AbilityActorInfo->AvatarActor.Get();
+		Props.TargetController = Data.Target.AbilityActorInfo->PlayerController.Get();
+		Props.TargetCharacter = Cast<ACharacter>(Props.TargetAvatarActor);
+		Props.TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Props.TargetAvatarActor);
 	}
 }
 
@@ -77,7 +77,9 @@ void UAstraAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallb
 {
 	Super::PostGameplayEffectExecute(Data);
 
-	
+	FEffectProperties Props;
+	SetEffectProperties(Data, Props);
+
 
 }
 
