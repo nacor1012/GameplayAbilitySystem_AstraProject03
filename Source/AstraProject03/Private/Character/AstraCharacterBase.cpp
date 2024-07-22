@@ -26,4 +26,9 @@ void AAstraCharacterBase::BeginPlay()
 	
 }
 
+void AAstraCharacterBase::InitAblilityActorInfo()
+{
+
+}
+
 

@@ -34,4 +34,6 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<USkeletalMeshComponent> Bow;
 
+	virtual void InitAblilityActorInfo();
+
 };

@@ -5,6 +5,7 @@
 
 #include "UI/HUD/AstraHUD.h"
 #include "Player/AstraPlayerController.h"
+#include "AbilitySystem/AstraAbilitySystemComponent.h"
 #include "AbilitySystemComponent.h"
 #include "Player/AstraPlayerState.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -47,6 +48,7 @@ void AAstraCharacter::InitAblilityActorInfo()
 	check(AstraPlayerState);
 
 	AstraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AstraPlayerState, this);
+	Cast<UAstraAbilitySystemComponent>(AstraPlayerState->GetAbilitySystemComponent())->AbilityActorInfoSet();
 	AbilitySystemComponent = AstraPlayerState->GetAbilitySystemComponent();
 	AttributeSet = AstraPlayerState->GetAttributeSet();
 

@@ -22,6 +22,6 @@ public:
 
 private:
 
-	void InitAblilityActorInfo();
+	virtual void InitAblilityActorInfo() override;
 
 };

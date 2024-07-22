@@ -52,6 +52,12 @@ void AAstraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	InitAblilityActorInfo();
 
+}
+
+void AAstraEnemy::InitAblilityActorInfo()
+{
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	Cast<UAstraAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
 }
