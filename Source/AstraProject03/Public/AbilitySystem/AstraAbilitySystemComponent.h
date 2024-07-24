@@ -6,6 +6,8 @@
 #include "AbilitySystemComponent.h"
 #include "AstraAbilitySystemComponent.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /*Asset Tags*/);
+
 /**
  * 
  */
@@ -17,6 +19,8 @@ class ASTRAPROJECT03_API UAstraAbilitySystemComponent : public UAbilitySystemCom
 public:
 
 	void AbilityActorInfoSet();
+
+	FEffectAssetTags EffectAssetTags;
 
 protected:
 
