@@ -35,11 +35,15 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 		{
 			for (const FGameplayTag& Tag : AssetTags)
 			{
-				//Converts converts the gameplay tag to a string the *before tag converts the string to an array to Tcars
-				const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
-				GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
 
-				FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+				//"TagGroup.Tag" .MatchesTag("TagGroup") will return true, "TagGroup".MatchesTag("TagGroup.Tag") will return false
+				// so in this function we are passing in the Tag veriable and .MatchesTag to "Message" so anything with Message as in its tag will show up
+				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
+				if (Tag.MatchesTag(MessageTag))
+				{
+	               const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+				   MessageWidgetRow.Broadcast(*Row);
+				}
 
 			}
 		});
