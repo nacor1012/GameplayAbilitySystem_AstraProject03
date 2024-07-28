@@ -23,6 +23,15 @@ void UAstraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Mana, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, MaxMana, COND_None, REPNOTIFY_Always);
+
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Strength, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Dexterity, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Agility, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Stamina, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Intelligence, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Wisdom, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Charisma, COND_None, REPNOTIFY_Always);
+
 }
 
 void UAstraAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
@@ -111,5 +120,47 @@ void UAstraAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana)
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, MaxMana, OldMaxMana);
 }
+
+void UAstraAttributeSet::OnRep_Strength(const FGameplayAttributeData& OldStrength) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, Strength, OldStrength);
+}
+
+void UAstraAttributeSet::OnRep_Dexterity(const FGameplayAttributeData& OldDexterity) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, Dexterity, OldDexterity);
+}
+
+void UAstraAttributeSet::OnRep_Agility(const FGameplayAttributeData& OldAgility) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, Agility, OldAgility);
+}
+
+void UAstraAttributeSet::OnRep_Stamina(const FGameplayAttributeData& OldStamina) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, Stamina, OldStamina);
+}
+
+void UAstraAttributeSet::OnRep_Intelligence(const FGameplayAttributeData& OldIntelligence) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, Intelligence, OldIntelligence);
+}
+
+void UAstraAttributeSet::OnRep_Wisdom(const FGameplayAttributeData& OldWisdom) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, Wisdom, OldWisdom);
+}
+
+void UAstraAttributeSet::OnRep_Charisma(const FGameplayAttributeData& OldCharisma) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, Charisma, OldCharisma);
+}
+
+
+
+
+
+
+
 
 

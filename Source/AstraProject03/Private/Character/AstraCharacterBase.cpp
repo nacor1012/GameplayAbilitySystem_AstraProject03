@@ -3,6 +3,8 @@
 
 #include "Character/AstraCharacterBase.h"
 
+#include "AbilitySystemComponent.h"
+
 
 AAstraCharacterBase::AAstraCharacterBase()
 {
@@ -29,6 +31,15 @@ void AAstraCharacterBase::BeginPlay()
 void AAstraCharacterBase::InitAblilityActorInfo()
 {
 
+}
+
+void AAstraCharacterBase::InitializePrimaryAttributes() const
+{
+	check(IsValid(GetAbilitySystemComponent()));
+	check(DefaultPrimaryAttributes);
+	const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(DefaultPrimaryAttributes, 1.f, ContextHandle);
+	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
 }
 
 
