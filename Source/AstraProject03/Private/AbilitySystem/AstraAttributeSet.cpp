@@ -10,7 +10,7 @@
 UAstraAttributeSet::UAstraAttributeSet()
 {
 	InitHealth(50.f);
-	InitMaxHealth(100.f);
+	InitMaxHealth(2000.f);
 	InitMana(20.f);
 	InitMaxMana(90.f);
 }
@@ -18,11 +18,18 @@ UAstraAttributeSet::UAstraAttributeSet()
 void UAstraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	/*
+	*  Vital Attributes
+	*/
 
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Health, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Mana, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, MaxMana, COND_None, REPNOTIFY_Always);
+
+	/*
+	* Primary Attributes
+	*/
 
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Strength, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Dexterity, COND_None, REPNOTIFY_Always);
@@ -31,6 +38,19 @@ void UAstraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& O
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Intelligence, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Wisdom, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, Charisma, COND_None, REPNOTIFY_Always);
+    
+	/*
+	*  Secondary Attributes
+	*/
+
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, ArmorClass, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, ArmorPenetration, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, BlockChance, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, CriticalHitChance, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, CriticalHitDamage, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, CriticalHitResistance, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, HealthRegeneration, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UAstraAttributeSet, ManaRegeneration, COND_None, REPNOTIFY_Always);
 
 }
 
@@ -156,6 +176,45 @@ void UAstraAttributeSet::OnRep_Charisma(const FGameplayAttributeData& OldCharism
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, Charisma, OldCharisma);
 }
 
+void UAstraAttributeSet::OnRep_ArmorClass(const FGameplayAttributeData& OldArmorClass) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, ArmorClass, OldArmorClass);
+}
+
+void UAstraAttributeSet::OnRep_ArmorPenetration(const FGameplayAttributeData& OldArmorPenetration) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, ArmorPenetration, OldArmorPenetration);
+}
+
+void UAstraAttributeSet::OnRep_BlockChance(const FGameplayAttributeData& OldBlockChance) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, BlockChance, OldBlockChance);
+}
+
+void UAstraAttributeSet::OnRep_CriticalHitChance(const FGameplayAttributeData& OldCriticalHitChance) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, CriticalHitChance, OldCriticalHitChance);
+}
+
+void UAstraAttributeSet::OnRep_CriticalHitDamage(const FGameplayAttributeData& OldCriticalHitDamage) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, CriticalHitDamage, OldCriticalHitDamage);
+}
+
+void UAstraAttributeSet::OnRep_CriticalHitResistance(const FGameplayAttributeData& OldCriticalHitResistance) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, CriticalHitResistance, OldCriticalHitResistance);
+}
+
+void UAstraAttributeSet::OnRep_HealthRegeneration(const FGameplayAttributeData& OldHealthRegeneration) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, HealthRegeneration, OldHealthRegeneration);
+}
+
+void UAstraAttributeSet::OnRep_ManaRegeneration(const FGameplayAttributeData& OldManaRegeneration) const
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UAstraAttributeSet, ManaRegeneration, OldManaRegeneration);
+}
 
 
 
