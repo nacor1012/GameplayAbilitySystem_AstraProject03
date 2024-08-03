@@ -10,9 +10,7 @@
 UAstraAttributeSet::UAstraAttributeSet()
 {
 	InitHealth(50.f);
-	InitMaxHealth(2000.f);
 	InitMana(20.f);
-	InitMaxMana(90.f);
 }
 
 void UAstraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

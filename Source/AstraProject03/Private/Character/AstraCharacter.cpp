@@ -60,6 +60,6 @@ void AAstraCharacter::InitAblilityActorInfo()
 		}
 	}
 	
-	InitializePrimaryAttributes();
+	InitializeDefaultAttributes();
 
 }
