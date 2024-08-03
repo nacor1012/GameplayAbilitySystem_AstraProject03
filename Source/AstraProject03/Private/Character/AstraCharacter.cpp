@@ -42,6 +42,14 @@ void AAstraCharacter::OnRep_PlayerState()
 
 }
 
+int32 AAstraCharacter::GetPlayerLevel()
+{
+	const AAstraPlayerState* AstraPlayerState = GetPlayerState<AAstraPlayerState>();
+	check(AstraPlayerState);
+
+	return AstraPlayerState->GetPlayerLevel();
+}
+
 void AAstraCharacter::InitAblilityActorInfo()
 {
 	AAstraPlayerState* AstraPlayerState = GetPlayerState<AAstraPlayerState>();

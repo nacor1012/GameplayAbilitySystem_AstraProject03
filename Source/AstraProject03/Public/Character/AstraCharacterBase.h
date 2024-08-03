@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Interaction/CombatInterface.h"
 #include "AbilitySystemInterface.h"
 #include "GameFramework/Character.h"
 #include "AstraCharacterBase.generated.h"
@@ -13,7 +14,7 @@ class UAttributeSet;
 class UGameplayEffect;
 
 UCLASS()
-class ASTRAPROJECT03_API AAstraCharacterBase : public ACharacter, public IAbilitySystemInterface
+class ASTRAPROJECT03_API AAstraCharacterBase : public ACharacter, public IAbilitySystemInterface, public ICombatInterface
 {
 	GENERATED_BODY()
 

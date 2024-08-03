@@ -3,6 +3,7 @@
 
 #include "Player/AstraPlayerState.h"
 
+#include "Net/UnrealNetwork.h"
 #include "AbilitySystem/AstraAttributeSet.h"
 #include "AbilitySystem/AstraAbilitySystemComponent.h"
 
@@ -17,7 +18,19 @@ AAstraPlayerState::AAstraPlayerState()
 	NetUpdateFrequency = 100.f;
 }
 
+void AAstraPlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AAstraPlayerState, Level)
+}
+
 UAbilitySystemComponent* AAstraPlayerState::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
+}
+
+void AAstraPlayerState::OnRep_Level(int32 OldLevel)
+{
+
 }

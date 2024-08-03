@@ -24,6 +24,10 @@ public:
 	virtual void UnHighLightActor() override;
 	/** End Enemy Interface */
 
+	/** Combat Interface */
+    virtual int32 GetPlayerLevel() override;
+    /** end Combat Interface */
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -35,5 +39,8 @@ protected:
 	TObjectPtr<USkeletalMeshComponent> Bow;
 
 	virtual void InitAblilityActorInfo();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
+	int32 Level = 1;
 
 };

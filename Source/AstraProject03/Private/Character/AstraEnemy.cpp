@@ -48,6 +48,11 @@ void AAstraEnemy::UnHighLightActor()
 	
 }
 
+int32 AAstraEnemy::GetPlayerLevel()
+{
+	return Level;
+}
+
 void AAstraEnemy::BeginPlay()
 {
 	Super::BeginPlay();
