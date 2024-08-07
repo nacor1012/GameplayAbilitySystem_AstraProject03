@@ -14,6 +14,10 @@ AAstraCharacterBase::AAstraCharacterBase()
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), FName("WeaponHandSocket"));
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	StaticWeapon = CreateDefaultSubobject<UStaticMeshComponent>("StaticWeapon");
+	StaticWeapon->SetupAttachment(GetMesh(), FName("StaticWeaponHandSocket"));
+	StaticWeapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 UAbilitySystemComponent* AAstraCharacterBase::GetAbilitySystemComponent() const
