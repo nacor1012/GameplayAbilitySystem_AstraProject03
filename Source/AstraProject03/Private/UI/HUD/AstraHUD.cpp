@@ -1,8 +1,8 @@
 // Copyright SkyHigh Gaming.
 
-
 #include "UI/HUD/AstraHUD.h"
 
+#include "UI/WidgetController/AttributeMenuWidgetController.h"
 #include "UI/WidgetController/AstraWidgetController.h"
 #include "UI/WidgetController/OverlayWidgetController.h"
 #include "UI/Widget/AstraUserWidget.h"
@@ -14,10 +14,19 @@ UOverlayWidgetController* AAstraHUD::GetOverlayWidgetController(const FWidgetCon
 		OverlayWidgetController = NewObject<UOverlayWidgetController>(this, OverlayWidgetControllerClass);
 		OverlayWidgetController->SetWidgetControllerParams(WCParams);
 		OverlayWidgetController->BindCallbacksToDependencies();
-
-		return OverlayWidgetController;
 	}
 	return OverlayWidgetController;
+}
+
+UAttributeMenuWidgetController* AAstraHUD::GetAttributeMenuWidgetController(const FWidgetControllerParams& WCParams)
+{
+	if (AttributeMenuWidgetController == nullptr)
+	{
+		AttributeMenuWidgetController = NewObject<UAttributeMenuWidgetController>(this, AttributeMenuWidgetControllerClass);
+		AttributeMenuWidgetController->SetWidgetControllerParams(WCParams);
+		AttributeMenuWidgetController->BindCallbacksToDependencies();
+    }
+	return AttributeMenuWidgetController;
 }
 
 void AAstraHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilitySystemComponent* ASC, UAttributeSet* AS)
