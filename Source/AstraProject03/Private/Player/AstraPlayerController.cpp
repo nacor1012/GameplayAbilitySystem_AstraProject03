@@ -100,6 +100,8 @@ void AAstraPlayerController::SetupInputComponent()
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
 
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAstraPlayerController::Move);
+
+
 }
 
 void AAstraPlayerController::Move(const FInputActionValue& InputActionValue)
