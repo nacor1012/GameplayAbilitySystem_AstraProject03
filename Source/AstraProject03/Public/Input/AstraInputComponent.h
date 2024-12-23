@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "EnhancedInputComponent.h"
-#include "AstraInputConfig.h"
+#include "Input/AstraInputConfig.h"
 #include "AstraInputComponent.generated.h"
 
 /**
@@ -30,7 +30,7 @@ void UAstraInputComponent::BindAbilityActions(const UAstraInputConfig* InputConf
 
 		for (const FAstraInputAction& Action : InputConfig->AbilityInputActions)
 		{
-			if (Action.IntputAction && Action.IntputTag.IsValid())
+			if (Action.InputAction && Action.InputTag.IsValid())
 			{
 				if (PressedFunc)
 				{
