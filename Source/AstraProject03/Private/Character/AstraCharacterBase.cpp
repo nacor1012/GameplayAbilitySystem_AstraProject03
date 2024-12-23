@@ -2,7 +2,7 @@
 
 
 #include "Character/AstraCharacterBase.h"
-
+#include "AbilitySystem/AstraAbilitySystemComponent.h"
 #include "AbilitySystemComponent.h"
 
 
@@ -52,6 +52,14 @@ void AAstraCharacterBase::InitializeDefaultAttributes() const
 	ApplyEffectToSelf(DefaultPrimaryAttributes,  1.f);
 	ApplyEffectToSelf(DefaultSecondaryAttributes, 1.f);
 	ApplyEffectToSelf(DefaultVitalAttributes, 1.f);
+}
+
+void AAstraCharacterBase::AddCharacterAbilities()
+{
+	UAstraAbilitySystemComponent* AstraASC = CastChecked<UAstraAbilitySystemComponent>(AbilitySystemComponent);
+	if (!HasAuthority()) return;
+
+	AstraASC->AddCharacterAbilities(StartupAbilities);
 }
 
 

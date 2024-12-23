@@ -30,7 +30,7 @@ void AAstraCharacter::PossessedBy(AController* NewController)
 	// Init ability actor info for the server
 	InitAblilityActorInfo();
 
-
+	AddCharacterAbilities();
 }
 
 void AAstraCharacter::OnRep_PlayerState()
