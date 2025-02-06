@@ -50,51 +50,17 @@ void AAstraPlayerController::AutoRun()
 
 void AAstraPlayerController::CursorTrace()
 {
-	FHitResult CursorHit;
 	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
 	if (!CursorHit.bBlockingHit) return;
 
 	LastActor = ThisActor;
 	ThisActor = CursorHit.GetActor();
 
-	/*
-	* Line trace from cursor. There are sevral scenarios:
-	* A. Lastactor is null && ThisActor is null
-	*     - Do nothing
-	* B. Lastactor is null && ThisActor is valid
-	*     - call Highlight ThisActor
-	* C.  Lastactor is valid && ThisActor is null
-	*     - call UnHighlight LastActor
-	* D. Both actors are valid but LastActor != ThisActor
-	*     - Unhighlight Lastactor & Highlight ThisActor
-	* E. Both actors are valid and are the same actor
-	*     - Do nothing
-	*/
+	if (LastActor != ThisActor)
+	{
 
-	if (LastActor == nullptr)
-	{
-		if (ThisActor != nullptr)
-		{
-			//Case B
-			ThisActor->HighLightActor();
-		}
-	}
-	else //LastActor is valid
-	{
-		if (ThisActor == nullptr)
-		{
-			//Case C
-			LastActor->UnHighLightActor();
-		}
-		else // Both actors are valid
-		{
-			if (LastActor != ThisActor)
-			{
-				//Case D
-				LastActor->UnHighLightActor();
-				ThisActor->HighLightActor();
-			}
-		}
+		if (LastActor) LastActor->UnHighLightActor();
+		if (ThisActor) ThisActor->HighLightActor();
 	}
 }
 
@@ -111,23 +77,18 @@ void AAstraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 {
 	if (!InputTag.MatchesTagExact(FAstraGameplayTags::Get().InputTag_LMB))
 	{
-		if (GetASC())
-		{
-			GetASC()->AbilityInputTagReleased(InputTag);
-		}
+		if (GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
 		return;
 	}
 
 	if (bTargeting)
 	{
-		if (GetASC())
-		{
-			GetASC()->AbilityInputTagReleased(InputTag);
-		}
+		if (GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
+	
 	}
 	else
 	{
-		APawn* ControlledPawn = GetPawn();
+		const APawn* ControlledPawn = GetPawn();
 		if (FollowTime <= ShortPressThreshold && ControlledPawn)
 		{
 			if (UNavigationPath* NavPath = UNavigationSystemV1::FindPathToLocationSynchronously(this, ControlledPawn->GetActorLocation(), CachedDestination))
@@ -136,7 +97,6 @@ void AAstraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 				for (const FVector& PointLoc : NavPath->PathPoints)
 				{
 					Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
-					DrawDebugSphere(GetWorld(), PointLoc, 8.f, 8, FColor::Green, false, 5.f);
 				}
 
 				if (NavPath->PathPoints.Num() > 1)
@@ -158,28 +118,21 @@ void AAstraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
   	if (!InputTag.MatchesTagExact(FAstraGameplayTags::Get().InputTag_LMB))
 	{
-		if (GetASC())
-		{
-			GetASC()->AbilityInputTagHeld(InputTag);
-		}
+		if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
 		return;
 	}
 
 	if (bTargeting)
 	{
-		if (GetASC())
-		{
-			GetASC()->AbilityInputTagHeld(InputTag);
-		}
+		if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
 	}
 	else
 	{
 		FollowTime += GetWorld()->GetDeltaSeconds();
 
-		FHitResult Hit;
-		if (GetHitResultUnderCursor(ECC_Visibility, false, Hit))
+		if (CursorHit.bBlockingHit)
 		{
-			CachedDestination = Hit.ImpactPoint;
+			CachedDestination = CursorHit.ImpactPoint;
 		}
 
 		if (APawn* ControlledPawn = GetPawn())
@@ -245,6 +198,7 @@ void AAstraPlayerController::Move(const FInputActionValue& InputActionValue)
 
 	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{
+		bAutoRunning = false;
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 	}
