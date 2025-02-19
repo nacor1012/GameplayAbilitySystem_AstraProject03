@@ -6,9 +6,8 @@
 #include "AbilitySystem/Abilitys/AstraGameplayAbility.h"
 #include "AstraProjectileSpell.generated.h"
 
-/**
- * 
- */
+class AAstraProjectile;
+
 UCLASS()
 class ASTRAPROJECT03_API UAstraProjectileSpell : public UAstraGameplayAbility
 {
@@ -17,4 +16,7 @@ class ASTRAPROJECT03_API UAstraProjectileSpell : public UAstraGameplayAbility
 protected:
 
 	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<AAstraProjectile> ProjectileClass;
 };

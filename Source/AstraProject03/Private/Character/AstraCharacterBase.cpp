@@ -32,6 +32,13 @@ void AAstraCharacterBase::BeginPlay()
 	
 }
 
+FVector AAstraCharacterBase::GetCombatSocketLocation()
+{
+	check(Weapon);
+	return Weapon->GetSocketLocation(WeaponTipSocketName);
+
+}
+
 void AAstraCharacterBase::InitAblilityActorInfo()
 {
 
